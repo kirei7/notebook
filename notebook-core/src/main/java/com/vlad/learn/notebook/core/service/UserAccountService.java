@@ -5,4 +5,5 @@ import com.vlad.learn.notebook.core.dto.UserForm;
 
 public interface UserAccountService {
     UserAccount registerUser(UserForm userData);
+    UserAccount findByEmail(String email);
 }

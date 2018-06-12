@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import java.io.Serializable;
 
 @Entity
 @Getter @Setter
@@ -12,7 +13,7 @@ import javax.validation.constraints.Email;
 @AllArgsConstructor
 @ToString(of = "email")
 @EqualsAndHashCode(of = "email")
-public class UserAccount {
+public class UserAccount implements Serializable {
     @Id
     @Email
     private String email;

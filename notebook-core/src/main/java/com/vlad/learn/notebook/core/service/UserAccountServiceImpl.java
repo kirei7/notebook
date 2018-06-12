@@ -2,10 +2,14 @@ package com.vlad.learn.notebook.core.service;
 
 import com.vlad.learn.notebook.core.entity.UserAccount;
 import com.vlad.learn.notebook.core.dto.UserForm;
+import com.vlad.learn.notebook.core.exception.UserAccountNotFoundException;
 import com.vlad.learn.notebook.core.repository.UserAccountRepository;
 import com.vlad.learn.notebook.core.validation.UserFormValidator;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+
+@Service
 public class UserAccountServiceImpl implements UserAccountService {
 
     private UserAccountRepository userAccountRepository;
@@ -30,4 +34,12 @@ public class UserAccountServiceImpl implements UserAccountService {
         );
         return userAccountRepository.save(newUserAccount);
     }
+
+    @Override
+    public UserAccount findByEmail(String email) {
+        return userAccountRepository
+                .findById(email)
+                .orElseThrow(() -> new UserAccountNotFoundException("There is not user with such email"));
+    }
+
 }
