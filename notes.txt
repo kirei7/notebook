@@ -1,0 +1,5 @@
+Some interesting or confusing facts I found during development
+
+1) During integration tests, resources are being loaded from test/resources folder.
+But if file is missing, resource will be loaded from main folder. So you, for example,
+can accidentally load production database.
