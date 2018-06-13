@@ -1,0 +1,1 @@
+insert into USER_ACCOUNT (EMAIL, PASSWORD_HASH) values ('mail@mail.com', '$2a$10$6F3vq6lntAcUEs/b6Fp2g.RVa0SjIvH3W0hhAptqVXb5ttH0fE.xi');
