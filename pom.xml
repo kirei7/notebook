@@ -13,7 +13,7 @@
 	<artifactId>notebook</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>notebook-web</module>
+        <module>notebook-app</module>
 		<module>notebook-core</module>
     </modules>
     <packaging>pom</packaging>
