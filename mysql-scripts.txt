@@ -1,0 +1,2 @@
+connect:
+    docker exec -it notebook_db_mysql bash
