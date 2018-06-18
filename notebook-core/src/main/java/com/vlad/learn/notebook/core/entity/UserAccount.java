@@ -21,7 +21,7 @@ public class UserAccount implements Serializable {
     @Email
     @NonNull
     @Column(columnDefinition = "VARCHAR(255)\n" +
-            "      CHARACTER SET latin1\n" +
+            "      CHARACTER SET ascii\n" +
             "      NOT NULL UNIQUE")
     private String email;
 
