@@ -1,0 +1,14 @@
+version: '3'
+services:
+  docker_mysql:
+    image: mysql:latest
+    container_name: notebook_db_mysql
+    volumes:
+      - ./mysql_data:/mysql_data
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dbAdmin
+      - MYSQL_DATABASE=notebook_db
+      - MYSQL_PASSWORD=1111

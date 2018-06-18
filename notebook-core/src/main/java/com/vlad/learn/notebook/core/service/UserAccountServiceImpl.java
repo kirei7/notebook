@@ -2,6 +2,7 @@ package com.vlad.learn.notebook.core.service;
 
 import com.vlad.learn.notebook.core.entity.UserAccount;
 import com.vlad.learn.notebook.core.dto.UserForm;
+import com.vlad.learn.notebook.core.entity.UserProfile;
 import com.vlad.learn.notebook.core.exception.UserAccountNotFoundException;
 import com.vlad.learn.notebook.core.repository.UserAccountRepository;
 import com.vlad.learn.notebook.core.validation.UserFormValidator;
@@ -28,18 +29,24 @@ public class UserAccountServiceImpl implements UserAccountService {
     @Override
     public UserAccount registerUser(UserForm userData) {
         userFormValidator.validate(userData);
-        UserAccount newUserAccount = new UserAccount(
-                userData.getEmail(),
-                passwordEncoder.encode(userData.getPassword())
-        );
+        UserAccount newUserAccount = createNewAccount(userData);
         return userAccountRepository.save(newUserAccount);
     }
 
     @Override
     public UserAccount findByEmail(String email) {
         return userAccountRepository
-                .findById(email)
+                .findByEmail(email)
                 .orElseThrow(() -> new UserAccountNotFoundException("There is not user with such email"));
     }
 
+    private UserAccount createNewAccount(UserForm userData) {
+        UserAccount newAccount = new UserAccount(
+                userData.getEmail(),
+                passwordEncoder.encode(userData.getPassword())
+        );
+        UserProfile newProfile = new UserProfile(newAccount);
+        newAccount.setUserProfile(newProfile);
+        return newAccount;
+    }
 }
