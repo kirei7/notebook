@@ -11,17 +11,17 @@ import java.util.List;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@EqualsAndHashCode
+@ToString(of = {"userAccount", "name"})
+@EqualsAndHashCode(of = "userAccount")
 public class UserProfile implements Serializable {
 
     @Id
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @MapsId
     private UserAccount userAccount;
-    private String name = "Default name";
-    @OneToMany(mappedBy = "userProfile")
+    private String name;
+    @OneToMany(mappedBy = "userProfile", cascade = CascadeType.PERSIST)
     private List<Note> notes = new ArrayList<>();
 
     public UserProfile(UserAccount userAccount) {
